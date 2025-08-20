@@ -45,45 +45,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
-
 </head>
-<body>
+<body style="height:100vh; display:flex; justify-content:center; align-items:center; background:#764ba2;">
 
+    <div style="background:white; padding:30px; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.2); width:100%; max-width:450px;">
     
-    <?php if (isset($_GET['register']) && $_GET['register'] === 'success'): ?>
-    <div class="alert alert-success">สมัครสมาชิกสำเร็จ กรุณาเข้าสู่ระบบ</div>
-    <?php endif; ?>
-    
+        <!-- สมัครสมาชิกสำเร็จ -->
+        <?php if (isset($_GET['register']) && $_GET['register'] === 'success'): ?>
+            <div class="alert alert-success text-center" style="border-radius:10px;">✅ สมัครสมาชิกสำเร็จ กรุณาเข้าสู่ระบบ</div>
+        <?php endif; ?>
 
+        <!-- error -->
+        <?php if (!empty($error)): ?>
+            <div class="alert alert-danger text-center" style="border-radius:10px;"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
 
-    <?php if (!empty($error)): ?>
-    <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
+        <!-- หัวข้อ -->
+        <h2 class="text-center mb-3" style="color:#333;">🔐 เข้าสู่ระบบ</h2>
+        <p class="text-center text-muted mb-4">กรอกชื่อผู้ใช้หรืออีเมล และรหัสผ่าน</p>
 
-
-    <div class="container mt-5">
-        <form method="post" class="row g-3">
-            <div class="col-md-6">
+        <!-- ฟอร์ม -->
+        <form method="post">
+            <div class="mb-3">
                 <label for="username_or_email" class="form-label">ชื่อผู้ใช้ หรืออีเมล</label>
-                <input type="text" name="username_or_email" id="username_or_email" class="form-control" required>
+                <input type="text" name="username_or_email" id="username_or_email" class="form-control" placeholder="กรอกชื่อผู้ใช้หรืออีเมล" required style="border-radius:10px;">
             </div>
-            <div class="col-md-6">
+            <div class="mb-4">
                 <label for="password" class="form-label">รหัสผ่าน</label>
-                <input type="password" name="password" id="password" class="form-control" required>
+                <input type="password" name="password" id="password" class="form-control" placeholder="********" required style="border-radius:10px;">
             </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-success">เข้าสู่ระบบ</button>
-                <a href="register.php" class="btn btn-link">สมัครสมาชิก</a>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-lg" style="border-radius:10px;">เข้าสู่ระบบ</button>
+                <a href="register.php" class="btn btn-outline-secondary" style="border-radius:10px;">สมัครสมาชิก</a>
             </div>
         </form>
     </div>
-    
 
-    <!-- java -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

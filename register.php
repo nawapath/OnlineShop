@@ -66,7 +66,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
 
 </head>
-<body>
+<body style="height:100vh; display:flex; justify-content:center; align-items:center; background:linear-gradient(135deg,#4facfe,#00f2fe);">
 
 
     <div class="container mt-5 d-flex justify-content-center align-items-center ">
