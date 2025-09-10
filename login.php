@@ -3,6 +3,7 @@
     require_once 'config.php';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        
         //รับค่าจากฟอร์ม
         $usernameOremail = trim($_POST['username_or_email']);
         $password = $_POST['password'];
