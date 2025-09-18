@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    
     require_once '../config.php';
     require_once 'auth_admin.php';
 
@@ -28,7 +28,12 @@
 <head>
 <meta charset="UTF-8">
 <title>จัดการสมาชิก</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CDN SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body style="background:#f8f9fa; font-family:'Segoe UI',sans-serif;">
 
@@ -76,9 +81,14 @@
                             <td class="text-center">
                                 <a href="edit_user.php?id=<?= $user['user_id'] ?>" 
                                     class="btn btn-sm btn-warning">✏️ แก้ไข</a>
-                                <a href="users.php?delete=<?= $user['user_id'] ?>" 
+                                <!-- <a href="users.php?delete=<?= $user['user_id'] ?>" 
                                     class="btn btn-sm btn-danger"
-                                    onclick="return confirm('คุณต้องการลบสมาชิกนี้หรือไม่?')">🗑️ ลบ</a>
+                                    onclick="return confirm('คุณต้องการลบสมาชิกนี้หรือไม่?')">🗑️ ลบ</a> -->
+                                    <form action="delUser_Sweet.php" method="POST" style="display:inline;">
+                                        <input type="hidden" name="u_id" value="<?php echo $user['user_id']; ?>">
+                                        <button type="button" class="delete-button btn btn-danger btn-sm " data-user-id="<?php echo
+                                        $user['user_id']; ?>">ลบ</button>
+                                    </form>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -94,6 +104,46 @@
     <footer class="bg-white text-center text-muted py-3 mt-5 shadow-sm">
         &copy; 2025 ระบบผู้ดูแล | Nawapath
     </footer>
+
+
+    <script>
+        // ฟังกช์ นั ส ำหรับแสดงกลอ่ งยนื ยัน SweetAlert2
+        function showDeleteConfirmation(userId) {
+                Swal.fire({
+                title: 'คุณแน่ใจหรือไม่?',
+                text: 'คุณจะไม่สามารถเรียกคืนข้อมูลกลับได ้!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'ลบ',
+                cancelButtonText: 'ยกเลิก',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                // หำกผใู้ชย้นื ยัน ใหส้ ง่ คำ่ ฟอรม์ ไปยัง delete.php เพื่อลบข ้อมูล
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = 'delUser_Sweet.php';
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'u_id';
+                    input.value = userId;
+                    form.appendChild(input);
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            });
+        }
+        // แนบตัวตรวจจับเหตุกำรณ์คลิกกับองค์ปุ ่่มลบทั ่ ้งหมดที่มีคลำส delete-button
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        deleteButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+            const userId = button.getAttribute('data-user-id');
+            showDeleteConfirmation(userId);
+            });
+        });
+    </script>
+
+
+
 
 </body>
 </html>

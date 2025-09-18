@@ -17,6 +17,11 @@
         WHERE p.product_id = ?");
     $stmt->execute([$product_id]);
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    //เตรียมรูป
+    $img = !empty($product['image'])
+            ? 'product_images/' . rawurlencode($product['image'])
+            : 'product_images/no-image.jpg';
 ?>
 
 
@@ -34,9 +39,12 @@
 
         <section class="card shadow-sm border-0" style="border-radius:12px;">
             <div class="row g-0">
-                <!-- ส่วนแสดงภาพ (ถ้าอนาคตมีรูป) -->
+
+                <!-- ส่วนแสดงภาพ-->
                 <div class="col-md-5 d-flex align-items-center justify-content-center p-3 bg-light">
-                    <span class="text-muted">[ไม่มีภาพสินค้า]</span>
+                    <img src="<?= htmlspecialchars($img) ?>"
+                        alt="<?= htmlspecialchars($product['product_name']) ?>"
+                        class="img-fluid rounded shadow-sm" style="max-height: 300px;">
                 </div>
 
                 <!-- ส่วนรายละเอียดสินค้า -->
