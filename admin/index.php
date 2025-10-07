@@ -43,7 +43,7 @@
                 </a>
             </div>
             <div class="col-md-3 col-sm-6">
-                <a href="category.php" class="text-decoration-none">
+                <a href="orders.php" class="text-decoration-none">
                     <div class="card shadow-sm border-0 text-center p-4 h-100" style="border-radius:12px;">
                         <div class="h1 text-success mb-2">🛒</div>
                         <h6 class="fw-semibold">จัดการคำสั่งซื้อ</h6>
@@ -59,7 +59,7 @@
                 </a>
             </div>
             <div class="col-md-3 col-sm-6">
-                <a href="categories.php" class="text-decoration-none">
+                <a href="category.php" class="text-decoration-none">
                     <div class="card shadow-sm border-0 text-center p-4 h-100" style="border-radius:12px;">
                         <div class="h1 text-dark mb-2">📂</div>
                         <h6 class="fw-semibold">จัดการหมวดหมู่</h6>

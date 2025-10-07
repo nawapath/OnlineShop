@@ -101,6 +101,7 @@
         SELECT * FROM categories ORDER BY category_name ASC
     ")->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
